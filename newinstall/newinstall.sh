@@ -58,6 +58,11 @@ echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sud
 sudo apt-get update 
 sudo apt-get install google-chrome-stable
 
+# install SNAP
+sudo apt install snapd
+sudo systemctl enable --now snapd apparmor
+sudo snap install snap-store
+
 # install ice for notion
 echo -e $TEXT_GREEN
 echo 'Installing ICE for NOTION' tee >>/var/log/installlog.txt
@@ -65,6 +70,10 @@ echo -e $TEXT_RESET
 wget https://launchpad.net/~peppermintos/+archive/ubuntu/ice-dev/+files/ice_5.3.0_all.deb
 sudo apt install ./ice_5.3.0_all.deb
 rm ./ice_5.3.0_all.deb
+
+# install un-official notion
+echo 'Installing ICE for NOTION' tee >>/var/log/installlog.txt
+sudo snap install notion-snap
 
 # install git
 echo -e $TEXT_GREEN
@@ -141,7 +150,9 @@ echo -e $TEXT_RESET
 sudo apt install openjdk-11-jre unrar rar p7zip-full ubuntu-restricted-extras libdvd-pkg -y
 sudo dpkg-reconfigure libdvd-pkg
 
- 
+#Make snaps show up in menu
+ln -st ~/.local/share/applications /var/lib/snapd/desktop/applications/*.desktop
+
 # Check for reboot required
 if [ -f /var/run/reboot-required ]; then
     echo -e $TEXT_RED_B
