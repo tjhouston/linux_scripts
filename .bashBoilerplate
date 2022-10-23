@@ -1,0 +1,29 @@
+#!/bin/bash
+# TJ Houston @tjhouston tj@tjhouston.com
+# March 2012
+# Execute: chmod go+rx "filename"
+
+
+
+#Pre-Flight
+
+# Check we are running as root
+
+    currentUser=`whoami`
+    if [ $currentUser != "root" ] ; #If user is not root do not attempt to run Script
+	
+	then
+        echo "This script must be run with super user privileges"
+
+    else #If We Are Running as Root Run Command With Variables		
+	
+	#Enter Code Here
+	
+		echo "Ding Fries Are Done!" #Verified Complete
+	fi
+	
+	
+	Variables
+	
+	TIMESTAMP=$(date +%m%d%y%H%M%S)
+	HOST=$(hostname|cut -f1 -d.)
